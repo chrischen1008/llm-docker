@@ -20,16 +20,25 @@ services:
             - driver: nvidia
               count: all
               capabilities: ["gpu"]
-    command:
+    # command:
+    #   [
+    #     "--model", "/models/Qwen3-0.6B",
+    #     "--served-model-name", "Qwen3-0.6B",
+    #     "--gpu-memory-utilization", "0.75",
+    #     "--max-model-len", "8000",
+    #     "--max-num-seqs", "16",
+    #     "--port", "8000"
+    #   ]
+    command: # 加入quantization量化參數、縮小其他參數值(如下)，可以加大模型且實測成功
       [
-        "--model", "/models/Qwen3-0.6B",
-        "--served-model-name", "Qwen3-0.6B",
-        "--gpu-memory-utilization", "0.75",
-        "--max-model-len", "8000",
-        "--max-num-seqs", "16",
+        "--model", "/models/Qwen3-1.7B",
+        "--served-model-name", "Qwen3-1.7B",
+        "--gpu-memory-utilization", "0.6", # 使用 60% 的 GPU 記憶體
+        "--max-model-len", "3500", # 最大上下文長度 3500 tokens
+        "--max-num-seqs", "8", #同時處理的最大序列數
+        "--quantization", "fp8", 
         "--port", "8000"
       ]
-
   streamlit-app:
     # 内联 Dockerfile，不需要单独的文件
     build:
@@ -50,6 +59,8 @@ services:
       - ./erp_data.json:/app/erp_data.json:ro
     environment:
       - VLLM_ENDPOINT=http://vllm-service:8000/v1
-      - LLM_MODEL=Qwen3-0.6B
+      # - LLM_MODEL=Qwen3-0.6B
+      - LLM_MODEL=Qwen3-1.7B
+
     depends_on:
       - vllm-service
