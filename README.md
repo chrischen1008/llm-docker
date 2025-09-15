@@ -57,7 +57,7 @@ Streamlit 建立前端服務。
     登入 Token 需至 [HuggingFace Tokens
     設定頁面](https://huggingface.co/settings/tokens) 申請，例如：
 
-        hf_xxxxIVxxxxxxxxxxxTqJ
+        hf_xxxxxxxxxxxxxxxxxxxxxx
 
 4.  下載模型：
 
