@@ -1,0 +1,9 @@
+# 核心依赖 - 使用兼容版本
+streamlit
+opencc-python-reimplemented
+pandas
+python-dotenv
+openai
+# 如果不需要可以移除的可选依赖
+# numpy 会被 pandas 自动安装
+# requests 会被 openai 自动安装

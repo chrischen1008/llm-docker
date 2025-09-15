@@ -1,0 +1,55 @@
+version: "3.9"
+
+services:
+  vllm-service:
+    # 直接使用官方镜像，不用自己构建
+    image: vllm/vllm-openai:latest
+    container_name: my_vllm_container
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/models:ro
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - VLLM_LOGGING_LEVEL=INFO
+      - HF_HUB_OFFLINE=1
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: ["gpu"]
+    command:
+      [
+        "--model", "/models/Qwen3-0.6B",
+        "--served-model-name", "Qwen3-0.6B",
+        "--gpu-memory-utilization", "0.75",
+        "--max-model-len", "8000",
+        "--max-num-seqs", "16",
+        "--port", "8000"
+      ]
+
+  streamlit-app:
+    # 内联 Dockerfile，不需要单独的文件
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM python:3.10-slim
+        RUN apt-get update && apt-get install -y gcc g++ curl && rm -rf /var/lib/apt/lists/*
+        WORKDIR /app
+        COPY requirements.txt .
+        RUN pip install --no-cache-dir -r requirements.txt
+        COPY . .
+        EXPOSE 8501
+        CMD ["streamlit", "run", "rag_chatroom_vllm.py", "--server.address", "0.0.0.0"]
+    container_name: my_streamlit_app
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./erp_data.json:/app/erp_data.json:ro
+    environment:
+      - VLLM_ENDPOINT=http://vllm-service:8000/v1
+      - LLM_MODEL=Qwen3-0.6B
+    depends_on:
+      - vllm-service

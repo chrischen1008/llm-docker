@@ -1,0 +1,18 @@
+{
+    "clothes": [
+        {"clothes_no": "B00022", "clothes_name": "涼感透氣運動內衣"},
+        {"clothes_no": "C00010", "clothes_name": "立領飛行員夾克(Bomber Jacket)"},
+        {"clothes_no": "C00021", "clothes_name": "輕便型夾克"},
+        {"clothes_no": "C00032", "clothes_name": "翻領抽繩短外套"}
+    ],
+    "clothes_color": [
+        {"clothes_no": "B00022", "c_color_no": "BK", "c_color_name": "夜黑色"},
+        {"clothes_no": "B00022", "c_color_no": "GR", "c_color_name": "鐵灰"},
+        {"clothes_no": "B00022", "c_color_no": "MO", "c_color_name": "摩卡"},
+        {"clothes_no": "C00010", "c_color_no": "BK", "c_color_name": "夜黑"},
+        {"clothes_no": "C00010", "c_color_no": "SE", "c_color_name": "沙城"},
+        {"clothes_no": "C00021", "c_color_no": "BK", "c_color_name": "夜黑"},
+        {"clothes_no": "C00032", "c_color_no": "BK", "c_color_name": "夜黑"},
+        {"clothes_no": "C00032", "c_color_no": "NV", "c_color_name": "深海藍"}
+    ]
+}

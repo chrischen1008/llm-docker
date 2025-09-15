@@ -1,0 +1,8 @@
+models/Qwen3-1.7B/model-*.safetensors
+models/Qwen3-1.7B/model.safetensors.index.json
+.env
+*.log
+*.pid
+__pycache__/
+*.pyc
+*.pyo
