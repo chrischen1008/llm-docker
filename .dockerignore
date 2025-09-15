@@ -1,10 +1,10 @@
-# Git 相关
+# Git 相關
 .git
 .gitignore
 README.md
 .github
 
-# Python 相关
+# Python 相關
 __pycache__
 *.pyc
 *.pyo
@@ -26,13 +26,13 @@ coverage.xml
 .pytest_cache
 .hypothesis
 
-# 开发工具
+# 開發工具
 .vscode
 .idea
 *.swp
 *.swo
 
-# OS 相关
+# 作業系統相關
 .DS_Store
 .DS_Store?
 ._*
@@ -41,23 +41,23 @@ coverage.xml
 ehthumbs.db
 Thumbs.db
 
-# Docker 相关
+# Docker 相關
 Dockerfile*
 docker-compose*
 .dockerignore
 
-# 模型文件（应该通过 volume 挂载）
+# 模型檔案（應該透過 volume 掛載）
 models/
 *.bin
 *.safetensors
 
-# 日志和临时文件
+# 日誌和暫存檔案
 *.log
 tmp/
 temp/
 output.csv
 
-# 环境变量文件
+# 環境變數檔案
 .env
 .env.local
 .env.production
