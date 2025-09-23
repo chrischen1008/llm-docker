@@ -4,6 +4,11 @@ opencc-python-reimplemented
 pandas
 python-dotenv
 openai
+pymssql
+# faiss-cpu>=1.7.4
+# sentence-transformers>=2.2.2
+# numpy>=1.25.0
+
 # 如果不需要可以移除的可选依赖
 # numpy 会被 pandas 自动安装
 # requests 会被 openai 自动安装
